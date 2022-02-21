@@ -36,15 +36,20 @@ type WatchConfig struct {
 
 // Step is buildkite pipeline definition
 type Step struct {
-	Trigger   string            `yaml:"trigger,omitempty"`
-	Label     string            `yaml:"label,omitempty"`
-	Build     Build             `yaml:"build,omitempty"`
-	Command   string            `yaml:"command,omitempty"`
-	Agents    Agent             `yaml:"agents,omitempty"`
-	Artifacts []string          `yaml:"artifacts,omitempty"`
-	RawEnv    interface{}       `json:"env" yaml:",omitempty"`
-	Env       map[string]string `yaml:"env,omitempty"`
-	Async     bool              `yaml:"async,omitempty"`
+	Trigger          string                   `yaml:"trigger,omitempty"`
+	Label            string                   `yaml:"label,omitempty"`
+	Build            Build                    `yaml:"build,omitempty"`
+	Command          string                   `yaml:"command,omitempty"`
+	Concurrency      uint                     `yaml:"concurrency,omitempty"`
+	ConcurrencyGroup string                   `json:"concurrency_group" yaml:"concurrency_group,omitempty"`
+	DependsOn        []string                 `json:"depends_on" yaml:"depends_on,omitempty"`
+	Key              string                   `yaml:"key,omitempty"`
+	Agents           Agent                    `yaml:"agents,omitempty"`
+	Artifacts        []string                 `yaml:"artifacts,omitempty"`
+	RawEnv           interface{}              `json:"env" yaml:",omitempty"`
+	Env              map[string]string        `yaml:"env,omitempty"`
+	Async            bool                     `yaml:"async,omitempty"`
+	Plugins          []map[string]interface{} `yaml:"plugins,omitempty"`
 }
 
 // Agent is Buildkite agent definition
