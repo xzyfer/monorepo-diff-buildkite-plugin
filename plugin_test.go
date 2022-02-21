@@ -72,10 +72,34 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 				{
 					"path": "watch-path-1",
 					"config": {
+						"label": "hello",
 						"command": "echo hello-world",
 						"env": [
 							"env4", "hi= bye"
 						]
+					}
+				},
+				{
+					"path": "watch-path-1",
+					"config": {
+						"command": "echo bye-bye",
+						"concurrency": 5,
+						"concurrency_group": "primary",
+						"depends_on": [
+							"hello"
+						],
+						"plugins": {
+							"docker#v3.3.0": {
+								"image": "alpine:latest",
+								"workdir": "/",
+								"environment": [
+									"MESSAGE=ciao"
+								],
+								"command": [
+									"echo", "\"$$MESSAGE\""
+								]
+							}
+						}
 					}
 				},
 				{
@@ -142,6 +166,7 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 			{
 				Paths: []string{"watch-path-1"},
 				Step: Step{
+					Label:   "hello",
 					Command: "echo hello-world",
 					Env: map[string]string{
 						"env1": "env-1",
@@ -149,6 +174,33 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 						"env3": "env-3",
 						"env4": "env-4",
 						"hi":   "bye",
+					},
+				},
+			},
+			{
+				Paths: []string{"watch-path-1"},
+				Step: Step{
+					Command: "echo bye-bye",
+					Env: map[string]string{
+						"env1": "env-1",
+						"env2": "env-2",
+						"env3": "env-3",
+					},
+					Concurrency:      5,
+					ConcurrencyGroup: "primary",
+					DependsOn:        []string{"hello"},
+					Plugins: map[string]interface{}{
+						"docker#v3.3.0": map[string]interface{}{
+							"image":   "alpine:latest",
+							"workdir": "/",
+							"environment": []interface{}{
+								"MESSAGE=ciao",
+							},
+							"command": []interface{}{
+								"echo",
+								`"$$MESSAGE"`,
+							},
+						},
 					},
 				},
 			},
