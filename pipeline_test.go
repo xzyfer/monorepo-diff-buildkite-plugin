@@ -249,7 +249,7 @@ func TestGeneratePipeline(t *testing.T) {
 			Command:          "echo bye-bye",
 			Concurrency:      5,
 			ConcurrencyGroup: "primary",
-			Plugins: map[string]interface{}{
+			Plugins: []map[string]interface{}{{
 				"docker#v3.3.0": map[string]interface{}{
 					"image":   "alpine:latest",
 					"workdir": "/",
@@ -261,7 +261,7 @@ func TestGeneratePipeline(t *testing.T) {
 						`"$$MESSAGE"`,
 					},
 				},
-			},
+			}},
 		},
 	}
 
@@ -274,7 +274,7 @@ func TestGeneratePipeline(t *testing.T) {
   concurrency: 5
   concurrency_group: primary
   plugins:
-    docker#v3.3.0:
+    - docker#v3.3.0:
       command:
       - echo
       - '"$$MESSAGE"'

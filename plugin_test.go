@@ -88,17 +88,19 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 						"depends_on": [
 							"hello"
 						],
-						"plugins": {
-							"docker#v3.3.0": {
-								"image": "alpine:latest",
-								"workdir": "/",
-								"environment": [
-									"MESSAGE=ciao"
-								],
-								"command": [
-									"echo", "\"$$MESSAGE\""
-								]
-							}
+						"plugins": [
+							{
+								"docker#v3.3.0": {
+									"image": "alpine:latest",
+									"workdir": "/",
+									"environment": [
+										"MESSAGE=ciao"
+									],
+									"command": [
+										"echo", "\"$$MESSAGE\""
+									]
+								}
+							]
 						}
 					}
 				},
@@ -189,7 +191,7 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 					Concurrency:      5,
 					ConcurrencyGroup: "primary",
 					DependsOn:        []string{"hello"},
-					Plugins: map[string]interface{}{
+					Plugins: []map[string]interface{}{{
 						"docker#v3.3.0": map[string]interface{}{
 							"image":   "alpine:latest",
 							"workdir": "/",
@@ -200,7 +202,7 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 								"echo",
 								`"$$MESSAGE"`,
 							},
-						},
+						}},
 					},
 				},
 			},
