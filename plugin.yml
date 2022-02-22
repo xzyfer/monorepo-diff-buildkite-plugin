@@ -52,7 +52,8 @@ configuration:
               type: array
             plugins:
               type: object
-            additionalProperties: true
+              additionalProperties:
+                type: object
     wait:
       type: boolean
     hooks:
