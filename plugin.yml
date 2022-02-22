@@ -4,7 +4,6 @@ author: https://github.com/chronotc
 requirements:
   - git
 configuration:
-  additionalProperties: true
   properties:
     diff:
       type: string
@@ -51,6 +50,9 @@ configuration:
               type: array
             env:
               type: array
+            plugins:
+              type: object
+            additionalProperties: true
     wait:
       type: boolean
     hooks:
