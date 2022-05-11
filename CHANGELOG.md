@@ -6,11 +6,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.1.2]
+## [2.2.1]
 
 ### Fixed
 - Detection of arm64 arch. [#84](https://github.com/chronotc/monorepo-diff-buildkite-plugin/pull/84) from [@LColman-SEEK](https://github.com/LColman-SEEK)
 - Panic when adjectent plugins used the same YAML fields. [#92](https://github.com/chronotc/monorepo-diff-buildkite-plugin/pull/92) from [@isaacsu](https://github.com/isaacsu)
+
+## [2.2.0]
+
+### Added
+- Added support for [Group Steps](https://buildkite.com/docs/pipelines/group-step). [#89](https://github.com/chronotc/monorepo-diff-buildkite-plugin/pull/89) from [@xzyfer](https://github.com/xzyfer)
+
+## [2.1.4]
+
+### Fixed
+- Fix failing MacOS builds. [#87](https://github.com/chronotc/monorepo-diff-buildkite-plugin/pull/87) from [@xzyfer](https://github.com/xzyfer)
+
+## [2.1.2]
+
+### Fixed
+- prevent incorrect interpolation of env on trigger steps. [#80](https://github.com/chronotc/monorepo-diff-buildkite-plugin/pull/80) from [@chronotc](https://github.com/chronotc)
 
 ## [2.1.1]
 
